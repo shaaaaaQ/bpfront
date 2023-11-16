@@ -11,5 +11,9 @@
     <a href="/leaderboard/0/1">std</a><br />
     <a href="/leaderboard/1/1">taiko</a><br />
     <a href="/leaderboard/2/1">ctb</a><br />
-    <a href="/leaderboard/3/1">mania</a>
+    <a href="/leaderboard/3/1">mania</a><br />
+    <a href="/leaderboard/4/1">4</a><br />
+    <a href="/leaderboard/5/1">5</a><br />
+    <a href="/leaderboard/6/1">6</a><br />
+    <a href="/leaderboard/8/1">8</a>
 </div>

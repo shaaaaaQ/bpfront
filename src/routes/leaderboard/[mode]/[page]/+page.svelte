@@ -2,6 +2,7 @@
     import { fetch } from "@tauri-apps/api/http";
     import { domain } from "$lib/store.js";
     import List from "./List.svelte";
+    import Pagination from "./Pagination.svelte";
 
     export let data;
 
@@ -25,15 +26,9 @@
         {#await fetchLeaderboard()}
             Loading
         {:then players}
-            {#if page > 1}
-                <a class="text-slate-100" href="/leaderboard/{mode}/{page - 1}"
-                    >zh</a
-                >
-            {/if}
-            <a class="text-slate-100" href="/leaderboard/{mode}/{page + 1}"
-                >zl</a
-            >
+            <Pagination {page} {mode} />
             <List {players} {mode} {page} />
+            <Pagination {page} {mode} />
         {:catch e}
             <span class="text-slate-100">{e}</span>
         {/await}
