@@ -19,7 +19,7 @@
                 {player.name}
             </div>
             <div class="p-2 ml-auto">
-                {player.pp}
+                {player.pp} PP
             </div>
         </a>
     {/each}

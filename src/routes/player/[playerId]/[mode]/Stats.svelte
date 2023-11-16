@@ -10,9 +10,7 @@
     };
 </script>
 
-<div
-    class="flex justify-between items-end text-slate-100 p-2 flex-wrap bg-slate-700 gap-3"
->
+<div class="flex justify-between items-end p-2 flex-wrap bg-slate-700 gap-3">
     <div class="flex flex-wrap gap-3 [&>div]:p-1 [&>div]:font-bold">
         <div>
             <div>

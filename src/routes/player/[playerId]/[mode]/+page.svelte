@@ -3,6 +3,7 @@
     import { domain } from "$lib/store.js";
     import Head from "./Head.svelte";
     import Stats from "./Stats.svelte";
+    import Status from "./Status.svelte";
 
     export let data;
 
@@ -16,16 +17,32 @@
         // ts wakaran
         if (typeof resp.data === "object") return resp.data!.player;
     };
+
+    const fetchStatus = async () => {
+        console.log("fetch status");
+        const resp = await fetch(
+            `https://api.${$domain}/v1/get_player_status?id=${playerId}`
+        );
+        // ts wakaran
+        if (typeof resp.data === "object") return resp.data!["player_status"];
+    };
 </script>
 
-<div class="max-w-[50rem] ml-auto mr-auto p-3">
+<div class="max-w-[50rem] ml-auto mr-auto p-3 text-slate-100">
     {#await fetchPlayer()}
         Loading
     {:then { info, stats }}
         <Head {info} />
         <Stats {info} stats={stats[mode]} />
-        TODO
     {:catch e}
-        <span class="text-slate-100">{e}</span>
+        {e}
+    {/await}
+
+    {#await fetchStatus()}
+        Loading
+    {:then status}
+        <Status {status} />
+    {:catch e}
+        {e}
     {/await}
 </div>

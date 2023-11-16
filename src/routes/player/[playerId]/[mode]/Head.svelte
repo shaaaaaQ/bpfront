@@ -3,7 +3,7 @@
     export let info: any;
 </script>
 
-<div class="flex text-slate-100 bg-slate-600 gap-3 rounded-t-md">
+<div class="flex bg-slate-600 gap-3 rounded-t-md">
     <img
         class="rounded-tl-md"
         width="50"
