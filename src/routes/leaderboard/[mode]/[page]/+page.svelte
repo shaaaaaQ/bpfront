@@ -20,7 +20,7 @@
     };
 </script>
 
-<div class="max-w-[50rem] ml-auto mr-auto p-3">
+<div class="p-3">
     {#key data}
         {#await fetchLeaderboard()}
             Loading
@@ -33,7 +33,7 @@
             <a class="text-slate-100" href="/leaderboard/{mode}/{page + 1}"
                 >zl</a
             >
-            <List {players} {mode} />
+            <List {players} {mode} {page} />
         {:catch e}
             <span class="text-slate-100">{e}</span>
         {/await}
