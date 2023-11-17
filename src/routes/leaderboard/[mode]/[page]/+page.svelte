@@ -36,7 +36,6 @@
                 (page - 1) * 50
             }`
         );
-        // ts wakaran
         return validateLeaderboard(resp.data).leaderboard;
     };
 </script>

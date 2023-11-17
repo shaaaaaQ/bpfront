@@ -11,7 +11,7 @@
 >
     {#each players as player, index}
         <a
-            class="flex bg-slate-600 border-b border-slate-800 border-solid text-slate-100"
+            class="flex bg-slate-600 border-b border-slate-800 border-solid"
             href="/player/{player['player_id']}/{mode}"
         >
             <div class="bg-slate-700 p-2 min-w-[3.5rem] text-center">

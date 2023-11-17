@@ -47,9 +47,33 @@
         return statusResponse.parse(v);
     };
 
+    const score = z.object({
+        id: z.number(),
+        score: z.number(),
+        pp: z.number(),
+        acc: z.number(),
+        mods: z.number(),
+        grade: z.enum(["XH", "X", "SH", "S", "A", "B", "C", "D", "F"]),
+        play_time: z.string(),
+        beatmap: z.object({
+            id: z.number(),
+            artist: z.string(),
+            title: z.string(),
+            version: z.string(),
+        }),
+    });
+    const playerScoresResponse = z.object({
+        status: z.string(),
+        scores: z.array(score),
+    });
+    const validateScores = (v: unknown) => {
+        return playerScoresResponse.parse(v);
+    };
+
     export type PlayerInfo = z.infer<typeof playerInfo>;
     export type ModeStats = z.infer<typeof modeStats>;
     export type PlayerStatus = z.infer<typeof playerStatus>;
+    export type Score = z.infer<typeof score>;
 </script>
 
 <script lang="ts">
@@ -59,6 +83,7 @@
     import Head from "./Head.svelte";
     import Stats from "./Stats.svelte";
     import Status from "./Status.svelte";
+    import BestScores from "./BestScores.svelte";
 
     export let data;
 
@@ -77,8 +102,15 @@
         const resp = await fetch(
             `https://api.${$domain}/v1/get_player_status?id=${playerId}`
         );
-        // ts wakaran
         return validateStatus(resp.data)["player_status"];
+    };
+
+    const fetchBestScores = async () => {
+        console.log("fetch best scores");
+        const resp = await fetch(
+            `https://api.${$domain}/v1/get_player_scores?id=${playerId}&scope=best&mode=${mode}&limit=100`
+        );
+        return validateScores(resp.data).scores;
     };
 </script>
 
@@ -96,6 +128,14 @@
         Loading
     {:then status}
         <Status {status} />
+    {:catch e}
+        {e}
+    {/await}
+
+    {#await fetchBestScores()}
+        Loading
+    {:then scores}
+        <BestScores {scores} />
     {:catch e}
         {e}
     {/await}
