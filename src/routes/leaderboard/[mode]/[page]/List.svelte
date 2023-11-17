@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let players: any;
+    import type { Player } from "./+page.svelte";
+
+    export let players: Player[];
     export let mode: string;
     export let page: number;
 </script>

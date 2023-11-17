@@ -1,5 +1,25 @@
+<script lang="ts" context="module">
+    const player = z.object({
+        player_id: z.number(),
+        name: z.string(),
+        country: z.string(),
+        pp: z.number(),
+    });
+    const leaderboardResponse = z.object({
+        status: z.string(),
+        leaderboard: z.array(player),
+    });
+
+    const validateLeaderboard = (v: unknown) => {
+        return leaderboardResponse.parse(v);
+    };
+
+    export type Player = z.infer<typeof player>;
+</script>
+
 <script lang="ts">
     import { fetch } from "@tauri-apps/api/http";
+    import { z } from "zod";
     import { domain } from "$lib/store";
     import List from "./List.svelte";
     import Pagination from "./Pagination.svelte";
@@ -17,7 +37,7 @@
             }`
         );
         // ts wakaran
-        if (typeof resp.data === "object") return resp.data!.leaderboard;
+        return validateLeaderboard(resp.data).leaderboard;
     };
 </script>
 
