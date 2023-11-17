@@ -5,3 +5,7 @@
 html {
     @apply bg-slate-800
 }
+
+input {
+    @apply focus-visible:outline-none
+}
