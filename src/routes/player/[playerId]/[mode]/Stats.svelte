@@ -1,6 +1,8 @@
 <script lang="ts">
-    export let info: any;
-    export let stats: any;
+    import type { ModeStats, PlayerInfo } from "./+page.svelte";
+
+    export let info: PlayerInfo;
+    export let stats: ModeStats;
 
     const formatPlayTime = (sec: number) => {
         const day = Math.floor(sec / (60 * 60 * 24));

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { fetch } from "@tauri-apps/api/http";
-    import { domain } from "$lib/store.js";
+    import { domain } from "$lib/store";
     import List from "./List.svelte";
     import Pagination from "./Pagination.svelte";
 

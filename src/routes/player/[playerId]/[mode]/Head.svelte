@@ -1,6 +1,7 @@
 <script lang="ts">
     import { domain } from "$lib/store.js";
-    export let info: any;
+    import type { PlayerInfo } from "./+page.svelte";
+    export let info: PlayerInfo;
 </script>
 
 <div class="flex bg-slate-600 gap-3 rounded-t-md">
