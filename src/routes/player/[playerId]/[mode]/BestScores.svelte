@@ -14,37 +14,62 @@
         D: "bg-rose-600",
         F: "bg-red-600",
     };
+
+    const formatElapsedTime = (sec: number) => {
+        const year = Math.floor(sec / (60 * 60 * 24 * 365));
+        const month = Math.floor(sec / (60 * 60 * 24 * (365 / 12))); // koko wakaran
+        const day = Math.floor(sec / (60 * 60 * 24));
+        const hour = Math.floor(sec / (60 * 60));
+        const min = Math.floor(sec / 60);
+        return (
+            (year && `${year}y`) ||
+            (month && `${month}m`) ||
+            (day && `${day}d`) ||
+            (hour && `${hour}h`) ||
+            (min && `${min}m`)
+        );
+    };
 </script>
 
-<div class="bg-slate-700 border-t-2 border-solid border-slate-800">
-    <div
-        class="font-bold text-3xl p-3 text-center border-b border-solid border-slate-800"
-    >
-        Best scores
-    </div>
-    {#each scores as score}
-        <div class="flex border-b border-solid border-slate-800">
-            <div
-                class="flex items-center justify-center min-w-[2rem] {rankBgColor[
-                    score.grade
-                ]}"
-            >
-                {score.grade}
-            </div>
-            <div class="p-2">
-                <div>
-                    <strong>
-                        {score.beatmap.title}
-                    </strong>
-                </div>
-                <div class="text-slate-300">
-                    {score.beatmap.version}
-                </div>
-            </div>
-            <div class="flex items-center text-end p-2 ml-auto">
-                {Math.round(score.pp)} PP
-            </div>
-        </div>
-    {/each}
-    <!-- TODO 折り畳み tableにする -->
+<div class="bg-slate-700 mt-2 rounded-md p-2">
+    <div class="font-bold text-2xl text-center">Best Performance</div>
+    <table class="border-spacing-y-1 border-separate">
+        <tr class="text-slate-300">
+            <td class="min-w-[2rem]" />
+            <td class="w-full" />
+            <td />
+            <td class=" text-center whitespace-nowrap"> ACC </td>
+            <td class=" text-center whitespace-nowrap"> PP </td>
+        </tr>
+        {#each scores as score}
+            <tr class="bg-slate-600/40">
+                <td class="text-center rounded-l-md {rankBgColor[score.grade]}">
+                    {score.grade}
+                </td>
+                <td class="p-2">
+                    <div>
+                        <strong>
+                            {score.beatmap.title}
+                        </strong>
+                    </div>
+                    <div class="text-slate-300">
+                        {score.beatmap.version}
+                    </div>
+                </td>
+                <td class="p-2 whitespace-nowrap">
+                    <!-- TODO timezone -->
+                    {formatElapsedTime(
+                        (Date.now() - new Date(score.play_time).getTime()) /
+                            1000
+                    )} ago
+                </td>
+                <td class="p-2 whitespace-nowrap">
+                    {score.acc.toFixed(2)}%
+                </td>
+                <td class="rounded-r-md p-2 whitespace-nowrap">
+                    {score.pp.toFixed(0)} PP
+                </td>
+            </tr>
+        {/each}
+    </table>
 </div>

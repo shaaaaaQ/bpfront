@@ -55,6 +55,7 @@
         mods: z.number(),
         grade: z.enum(["XH", "X", "SH", "S", "A", "B", "C", "D", "F"]),
         play_time: z.string(),
+        time_elapsed: z.number(),
         beatmap: z.object({
             id: z.number(),
             artist: z.string(),

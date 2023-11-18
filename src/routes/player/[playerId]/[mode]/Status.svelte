@@ -4,9 +4,7 @@
     export let status: PlayerStatus;
 </script>
 
-<div
-    class="bg-slate-700 border-t-2 border-solid border-slate-800 p-3 flex gap-4 items-center"
->
+<div class="bg-slate-700 mt-[1px] p-2 flex gap-4 items-center rounded-b-md">
     {#if status.status}
         {@const infoText = status["status"]["info_text"]}
         <span class="font-bold text-xl">Online</span>
