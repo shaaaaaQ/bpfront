@@ -34,19 +34,23 @@
 <div class="bg-slate-700 mt-2 rounded-md p-2">
     <div class="font-bold text-2xl text-center">Best Performance</div>
     <table class="border-spacing-y-1 border-separate">
-        <tr class="text-slate-300">
+        <!-- <tr class="text-slate-300">
             <td class="min-w-[2rem]" />
             <td class="w-full" />
             <td />
             <td class=" text-center whitespace-nowrap"> ACC </td>
             <td class=" text-center whitespace-nowrap"> PP </td>
-        </tr>
+        </tr> -->
         {#each scores as score}
             <tr class="bg-slate-600/40">
-                <td class="text-center rounded-l-md {rankBgColor[score.grade]}">
+                <td
+                    class="min-w-[2rem] text-center rounded-l-md {rankBgColor[
+                        score.grade
+                    ]}"
+                >
                     {score.grade}
                 </td>
-                <td class="p-2">
+                <td class="p-2 w-full">
                     <div>
                         <strong>
                             {score.beatmap.title}
@@ -56,17 +60,19 @@
                         {score.beatmap.version}
                     </div>
                 </td>
-                <td class="p-2 whitespace-nowrap">
+                <td class="p-2 whitespace-nowrap text-end text-slate-300">
                     <!-- TODO timezone -->
                     {formatElapsedTime(
                         (Date.now() - new Date(score.play_time).getTime()) /
                             1000
                     )} ago
                 </td>
-                <td class="p-2 whitespace-nowrap">
+                <td class="p-2 whitespace-nowrap text-end text-yellow-300">
                     {score.acc.toFixed(2)}%
                 </td>
-                <td class="rounded-r-md p-2 whitespace-nowrap">
+                <td
+                    class="bg-slate-800/60 rounded-r-md p-2 min-w-[4.5rem] whitespace-nowrap text-end text-red-300"
+                >
                     {score.pp.toFixed(0)} PP
                 </td>
             </tr>
