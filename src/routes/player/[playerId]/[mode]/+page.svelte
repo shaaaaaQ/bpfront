@@ -85,6 +85,7 @@
     import Stats from "./Stats.svelte";
     import Status from "./Status.svelte";
     import BestScores from "./BestScores.svelte";
+    import RecentScores from "./RecentScores.svelte";
 
     export let data;
 
@@ -113,6 +114,14 @@
         );
         return validateScores(resp.data).scores;
     };
+
+    const fetchRecentScores = async () => {
+        console.log("fetch recent scores");
+        const resp = await fetch(
+            `https://api.${$domain}/v1/get_player_scores?id=${playerId}&scope=recent&mode=${mode}&limit=100`
+        );
+        return validateScores(resp.data).scores;
+    };
 </script>
 
 <div class="p-3">
@@ -137,6 +146,14 @@
         Loading
     {:then scores}
         <BestScores {scores} />
+    {:catch e}
+        {e}
+    {/await}
+
+    {#await fetchRecentScores()}
+        Loading
+    {:then scores}
+        <RecentScores {scores} />
     {:catch e}
         {e}
     {/await}
