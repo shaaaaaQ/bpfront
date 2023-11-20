@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Score } from "./+page.svelte";
+    import { formatElapsedTime, formatMods } from "./utils";
 
     export let scores: Score[];
 
@@ -13,22 +14,6 @@
         C: "bg-orange-600",
         D: "bg-rose-600",
         F: "bg-red-600",
-    };
-
-    const formatElapsedTime = (sec: number) => {
-        const year = Math.floor(sec / (60 * 60 * 24 * 365));
-        const month = Math.floor(sec / (60 * 60 * 24 * (365 / 12))); // koko wakaran
-        const day = Math.floor(sec / (60 * 60 * 24));
-        const hour = Math.floor(sec / (60 * 60));
-        const min = Math.floor(sec / 60);
-        return (
-            (year && `${year}y`) ||
-            (month && `${month}m`) ||
-            (day && `${day}d`) ||
-            (hour && `${hour}h`) ||
-            (min && `${min}m`) ||
-            `${sec}s`
-        );
     };
 
     let hideFailedPlays = true;
@@ -49,13 +34,6 @@
         </label>
     </div>
     <table class="border-spacing-y-1 border-separate">
-        <!-- <tr class="text-slate-300">
-            <td class="min-w-[2rem]" />
-            <td class="w-full" />
-            <td />
-            <td class=" text-center whitespace-nowrap"> ACC </td>
-            <td class=" text-center whitespace-nowrap"> PP </td>
-        </tr> -->
         {#each visibleScores.slice(0, show) as score}
             <tr class="bg-slate-600/40">
                 <td
@@ -74,6 +52,9 @@
                     <div class="text-slate-300">
                         {score.beatmap.version}
                     </div>
+                </td>
+                <td class="p-2 whitespace-nowrap text-end">
+                    {formatMods(score.mods)}
                 </td>
                 <td class="p-2 whitespace-nowrap text-end text-slate-300">
                     <!-- TODO timezone -->
