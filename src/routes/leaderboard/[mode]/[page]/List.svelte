@@ -6,23 +6,29 @@
     export let page: number;
 </script>
 
-<div
-    class="[&>a:first-child]:rounded-t-md [&>a:first-child>div:first-child]:rounded-tl-md [&>a:last-child]:rounded-b-md [&>a:last-child>div:first-child]:rounded-bl-md"
+<table
+    class="border-spacing-y-[1px] border-separate [&>tr:nth-child(2)>td:first-child]:rounded-tl-md [&>tr:nth-child(2)>td:last-child]:rounded-tr-md [&>tr:last-child>td:first-child]:rounded-bl-md [&>tr:last-child>td:last-child]:rounded-br-md"
 >
+    <tr class="text-slate-300">
+        <th class="min-w-[2rem]" />
+        <th class="w-full" />
+        <th class=" text-center whitespace-nowrap"> Performance </th>
+    </tr>
     {#each players as player, index}
-        <a
-            class="flex bg-slate-600 border-b border-slate-800 border-solid"
-            href="/player/{player['player_id']}/{mode}"
+        <tr
+            class="bg-slate-600"
+            on:click={() =>
+                (window.location.href = `/player/${player["player_id"]}/${mode}`)}
         >
-            <div class="bg-slate-700 p-2 min-w-[3.5rem] text-center">
+            <td class="bg-slate-700 p-2 min-w-[3.5rem] text-center">
                 #{index + 1 + (page - 1) * 50}
-            </div>
-            <div class="p-2">
+            </td>
+            <td class="p-2">
                 {player.name}
-            </div>
-            <div class="p-2 ml-auto">
-                {player.pp} PP
-            </div>
-        </a>
+            </td>
+            <td class="p-2 text-center whitespace-nowrap">
+                {player.pp}
+            </td>
+        </tr>
     {/each}
-</div>
+</table>

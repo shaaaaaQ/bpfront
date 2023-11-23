@@ -22,13 +22,6 @@
 <div class="bg-slate-700 mt-2 rounded-md p-2">
     <div class="font-bold text-2xl text-center">Best Performance</div>
     <table class="border-spacing-y-1 border-separate">
-        <!-- <tr class="text-slate-300">
-            <td class="min-w-[2rem]" />
-            <td class="w-full" />
-            <td />
-            <td class=" text-center whitespace-nowrap"> ACC </td>
-            <td class=" text-center whitespace-nowrap"> PP </td>
-        </tr> -->
         {#each scores.slice(0, show) as score}
             <tr class="bg-slate-600/40">
                 <td
