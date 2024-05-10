@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ModeStats, PlayerInfo } from "./+page.svelte";
+    import type { ModeStats, PlayerInfo } from "./schema";
 
     export let info: PlayerInfo;
     export let stats: ModeStats;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Player } from "./+page.svelte";
+    import type { Player } from "./schema";
 
     export let players: Player[];
     export let mode: string;

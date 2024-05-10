@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Score } from "./+page.svelte";
+    import type { Score } from "./schema";
     import { formatElapsedTime, formatMods } from "./utils";
 
     export let scores: Score[];
@@ -21,7 +21,7 @@
     let show = 7;
 
     $: visibleScores = scores.filter(
-        (s) => s.grade !== "F" || !hideFailedPlays
+        (s) => s.grade !== "F" || !hideFailedPlays,
     );
 </script>
 
@@ -60,7 +60,7 @@
                     <!-- TODO timezone -->
                     {formatElapsedTime(
                         (Date.now() - new Date(score.play_time).getTime()) /
-                            1000
+                            1000,
                     )} ago
                 </td>
                 <td class="p-2 whitespace-nowrap text-end text-yellow-300">

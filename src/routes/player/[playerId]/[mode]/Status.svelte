@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { PlayerStatus } from "./+page.svelte";
+    import type { PlayerStatus } from "./schema.ts";
 
     export let status: PlayerStatus;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { domain } from "$lib/store.js";
-    import type { PlayerInfo } from "./+page.svelte";
+    import type { PlayerInfo } from "./schema";
     export let info: PlayerInfo;
 </script>
 
