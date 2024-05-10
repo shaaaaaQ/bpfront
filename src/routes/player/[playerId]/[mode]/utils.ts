@@ -5,12 +5,12 @@ export const formatElapsedTime = (sec: number) => {
     const hour = Math.floor(sec / (60 * 60));
     const min = Math.floor(sec / 60);
     return (
-        (year && `${year}y`) ||
-        (month && `${month}m`) ||
-        (day && `${day}d`) ||
-        (hour && `${hour}h`) ||
-        (min && `${min}m`) ||
-        `${sec}s`
+        (year && `${year}years`) ||
+        (month && `${month}months`) ||
+        (day && `${day}days`) ||
+        (hour && `${hour}hours`) ||
+        (min && `${min}minutes ago`) ||
+        `${sec}seconds`
     );
 };
 

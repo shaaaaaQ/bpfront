@@ -47,7 +47,7 @@
 
 <div class="p-3">
     {#await fetchPlayer()}
-        <div>Loading</div>
+        <div>Loading Player</div>
     {:then { info, stats }}
         <Head {info} />
         <Stats {info} stats={stats[mode]} />
@@ -56,7 +56,7 @@
     {/await}
 
     {#await fetchStatus()}
-        <div>Loading</div>
+        <div>Loading Status</div>
     {:then status}
         <Status {status} />
     {:catch e}
@@ -64,7 +64,7 @@
     {/await}
 
     {#await fetchBestScores()}
-        <div>Loading</div>
+        <div>Loading Best Scores</div>
     {:then scores}
         <BestScores {scores} />
     {:catch e}
@@ -72,7 +72,7 @@
     {/await}
 
     {#await fetchRecentScores()}
-        <div>Loading</div>
+        <div>Loading Recent Scores</div>
     {:then scores}
         <RecentScores {scores} />
     {:catch e}
