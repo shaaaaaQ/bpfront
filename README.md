@@ -11,3 +11,4 @@ npm run tauri build
 todo
 - タイムゾーン
 - 国別ランキング
+- 戻るボタン
